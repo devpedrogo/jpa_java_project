@@ -42,6 +42,7 @@ public class AlunosEntity {
     private AvaliacoesFisicasEntity avaliacaoFisica;
 
     @OneToMany(mappedBy = "aluno_id")
+    @Builder.Default
     private Set<TreinosEntity> treinos = new HashSet<>();
 
 }

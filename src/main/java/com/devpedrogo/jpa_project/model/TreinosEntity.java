@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "alunos")
+@Table(name = "treinos")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -45,5 +45,6 @@ public class TreinosEntity {
         joinColumns = @JoinColumn(name = "treino_id"),
         inverseJoinColumns = @JoinColumn(name = "exercicio_id")
     )
+    @Builder.Default
     private Set<ExerciciosEntity> exercicios = new HashSet<>();
 }
