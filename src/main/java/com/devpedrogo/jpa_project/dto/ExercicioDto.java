@@ -1,0 +1,17 @@
+package com.devpedrogo.jpa_project.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+@Builder
+public class ExercicioDto {
+    @NotBlank
+    private String nome;
+    @NotBlank
+    private String grupoMuscular;
+}
