@@ -3,6 +3,7 @@ package com.devpedrogo.jpa_project.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class AlunosEntity {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "avaliacao_fisica_id")
     private AvaliacoesFisicasEntity avaliacaoFisica;
 

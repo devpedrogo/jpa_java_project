@@ -6,6 +6,7 @@ import com.devpedrogo.jpa_project.dto.ExercicioDto;
 import com.devpedrogo.jpa_project.model.ExerciciosEntity;
 import com.devpedrogo.jpa_project.service.ExerciciosService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class ExerciciosController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void criarExercicio(@RequestBody ExercicioDto exercicioDto){
+    public void criarExercicio(@Valid @RequestBody ExercicioDto exercicioDto){
         exerciciosService.save(exercicioDto);
     }
 
