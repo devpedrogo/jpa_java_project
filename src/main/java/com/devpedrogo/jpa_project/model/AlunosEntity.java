@@ -41,7 +41,7 @@ public class AlunosEntity {
     @JoinColumn(name = "avaliacao_fisica_id")
     private AvaliacoesFisicasEntity avaliacaoFisica;
 
-    @OneToMany(mappedBy = "aluno_id")
+    @OneToMany(mappedBy = "aluno")
     @Builder.Default
     private Set<TreinosEntity> treinos = new HashSet<>();
 

@@ -32,4 +32,8 @@ public class ExerciciosService {
     public List<ExerciciosEntity> findAllByGrupoMuscular(String grupoMuscular){
         return exerciciosRepository.findAllByGrupoMuscular(grupoMuscular);
     }
+
+    public void deleteById(Integer id){
+        exerciciosRepository.deleteById(id);
+    }
 }
