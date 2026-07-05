@@ -17,7 +17,7 @@ public interface IExerciciosRepository extends JpaRepository<ExerciciosEntity, I
     // Criando queries com Jpql, usando a orientação a objeto
     @Query(value = """
             SELECT e 
-            FROM Exercicios e
+            FROM ExerciciosEntity e
             WHERE UPPER(e.grupoMuscular) = UPPER(:grupoMuscular)
     """)
     List<ExerciciosEntity> findAllByGrupoMuscularJpql(@Param("grupoMuscular") String grupoMuscular);
