@@ -21,6 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+// @JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class AvaliacoesFisicasEntity {
 
     @Id
