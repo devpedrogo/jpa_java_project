@@ -23,7 +23,7 @@ public class AvaliacaoFisicaService {
 
         AvaliacoesFisicasEntity avaliacaoFisica = aluno.getAvaliacaoFisica();
         if(avaliacaoFisica != null){
-            throw new BadRequestException("Avaliação fídica já cadastrada para este aluno.");
+            throw new BadRequestException("Avaliação física já cadastrada para este aluno.");
         }
 
         avaliacaoFisica = AvaliacoesFisicasEntity.builder()
