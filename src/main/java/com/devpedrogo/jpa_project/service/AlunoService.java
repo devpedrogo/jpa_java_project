@@ -9,7 +9,6 @@ import com.devpedrogo.jpa_project.dto.AlunoDto;
 import com.devpedrogo.jpa_project.exception.BadRequestException;
 import com.devpedrogo.jpa_project.exception.NotFoundException;
 import com.devpedrogo.jpa_project.model.AlunosEntity;
-import com.devpedrogo.jpa_project.model.TreinosEntity;
 import com.devpedrogo.jpa_project.repository.IAlunosRepository;
 import com.devpedrogo.jpa_project.repository.IAvaliacoesFisicasRepository;
 import com.devpedrogo.jpa_project.repository.ITreinosRepository;
