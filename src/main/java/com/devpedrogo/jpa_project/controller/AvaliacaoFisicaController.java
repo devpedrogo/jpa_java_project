@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @RequestMapping("v1/avaliacoes")
@@ -30,13 +31,21 @@ public class AvaliacaoFisicaController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void criarAvaliacaoFisica(@Valid @RequestBody AvaliacaoFisicaDto avaliacaoFisicaDto) throws NotFoundException, BadRequestException{
+    public void criarAvaliacaoFisica(@Valid @RequestBody AvaliacaoFisicaDto avaliacaoFisicaDto)
+            throws NotFoundException, BadRequestException {
         avaliacaoFisicaService.criarAvaliacaoFisica(avaliacaoFisicaDto);
     }
-    
+
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<AvaliacaoFisicaProjection> getAllAvaliacoesFisicas(){
+    public List<AvaliacaoFisicaProjection> getAllAvaliacoesFisicas() {
         return avaliacaoFisicaService.getAllAvaliacoesFisicas();
+    }
+
+    @GetMapping("/page/{page}/size{size}")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<AvaliacaoFisicaProjection> getAllAvaliacoesFisicasPageable(@PathVariable Integer page,
+            @PathVariable Integer size) {
+        return avaliacaoFisicaService.getAllAvaliacoesFisicasPageable(page, size);
     }
 }
