@@ -3,6 +3,7 @@ package com.devpedrogo.jpa_project.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devpedrogo.jpa_project.dto.AvaliacaoFisicaDto;
+import com.devpedrogo.jpa_project.dto.AvaliacaoFisicaProjection;
 import com.devpedrogo.jpa_project.exception.BadRequestException;
 import com.devpedrogo.jpa_project.exception.NotFoundException;
 import com.devpedrogo.jpa_project.service.AvaliacaoFisicaService;
@@ -12,7 +13,11 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -29,4 +34,9 @@ public class AvaliacaoFisicaController {
         avaliacaoFisicaService.criarAvaliacaoFisica(avaliacaoFisicaDto);
     }
     
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<AvaliacaoFisicaProjection> getAllAvaliacoesFisicas(){
+        return avaliacaoFisicaService.getAllAvaliacoesFisicas();
+    }
 }
