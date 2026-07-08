@@ -8,6 +8,7 @@ import com.devpedrogo.jpa_project.exception.BadRequestException;
 import com.devpedrogo.jpa_project.exception.NotFoundException;
 import com.devpedrogo.jpa_project.service.AvaliacaoFisicaService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("v1/avaliacoes")
+@Tag(name = "Avaliações Físicas", description = "Endpoints para gerenciamento de avaliações físicas")
 @RequiredArgsConstructor
 public class AvaliacaoFisicaController {
     private final AvaliacaoFisicaService avaliacaoFisicaService;

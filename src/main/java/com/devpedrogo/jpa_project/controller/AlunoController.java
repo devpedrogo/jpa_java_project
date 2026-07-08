@@ -8,6 +8,9 @@ import com.devpedrogo.jpa_project.dto.AlunoDto;
 import com.devpedrogo.jpa_project.exception.BadRequestException;
 import com.devpedrogo.jpa_project.exception.NotFoundException;
 import com.devpedrogo.jpa_project.service.AlunoService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import com.devpedrogo.jpa_project.model.AlunosEntity;
 
 import jakarta.validation.Valid;
@@ -26,6 +29,7 @@ import org.springframework.http.HttpStatus;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/alunos")
+@Tag(name = "Alunos", description = "Endpoints para gerenciamento de alunos")
 public class AlunoController {
     private final AlunoService alunoService;
     

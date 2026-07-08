@@ -6,6 +6,7 @@ import com.devpedrogo.jpa_project.dto.ExercicioDto;
 import com.devpedrogo.jpa_project.model.ExerciciosEntity;
 import com.devpedrogo.jpa_project.service.ExerciciosService;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("v1/exercicios")
+@Tag(name = "Exercícios", description = "Endpoints para gerenciamento de exercícios")
 @RequiredArgsConstructor
 public class ExerciciosController {
     private final ExerciciosService exerciciosService;
