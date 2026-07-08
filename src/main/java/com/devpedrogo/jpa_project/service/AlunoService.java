@@ -18,9 +18,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AlunoService {
-    private IAlunosRepository alunosRepository;
-    private ITreinosRepository treinosRepository;
-    private IAvaliacoesFisicasRepository avaliacoesFisicasRepository;
+    private final IAlunosRepository alunosRepository;
+    private final ITreinosRepository treinosRepository;
+    private final IAvaliacoesFisicasRepository avaliacoesFisicasRepository;
 
     public void criarAluno(AlunoDto alunoDto) throws BadRequestException{
         AlunosEntity aluno = alunosRepository.findByEmail(alunoDto.getEmail()).orElse(null);
@@ -35,6 +35,10 @@ public class AlunoService {
                 .build();
 
         alunosRepository.save(novoAluno);
+    }
+
+    public List<AlunosEntity> listarAlunos() {
+        return alunosRepository.findAll();
     }
 
     //Rollback com a anotação @Transactional para manter a integridade dos dados

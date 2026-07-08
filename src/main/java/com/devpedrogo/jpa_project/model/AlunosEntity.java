@@ -3,6 +3,8 @@ package com.devpedrogo.jpa_project.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +29,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class AlunosEntity {
 
     @Id
@@ -44,6 +47,7 @@ public class AlunosEntity {
     private AvaliacoesFisicasEntity avaliacaoFisica;
 
     @OneToMany(mappedBy = "aluno")
+    @JsonIgnoreProperties("aluno")
     @Builder.Default
     private Set<TreinosEntity> treinos = new HashSet<>();
 

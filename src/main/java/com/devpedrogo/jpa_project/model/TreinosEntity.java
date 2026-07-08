@@ -3,6 +3,8 @@ package com.devpedrogo.jpa_project.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,7 @@ public class TreinosEntity {
     private String nome;
 
     @ManyToOne
+    @JsonIgnoreProperties("treinos")
     @JoinColumn(name = "aluno_id")
     private AlunosEntity aluno;
 
