@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -43,8 +44,33 @@ public class TokenProvider {
 
     private SecretKey getSingingKey(){
         return Keys.hmacShaKeyFor(key.getBytes());
+
+        // GARANTE QUE FUNCIONE IGUAL EM QUALQUER SERVIDOR (WINDOWS/LINUX)
+        // return Keys.hmacShaKeyFor(key.getBytes(StandardCharsets.UTF_8));
     }
+
     //validar um token
+    public Boolean isTokenValid(String token){
+        try{
+            getClaims(token);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+
+    private Claims getClaims(String token){
+        //validar assinatura
+        //validar expiracao
+        return Jwts.parser()
+            .verifyWith(getSingingKey())
+            .build()
+            .parseSignedClaims(token)
+            .getPayload();
+    }
 
     //extrair informações do token
+    public String getUsername(String token){
+        return getClaims(token).getSubject();
+    }
 }
