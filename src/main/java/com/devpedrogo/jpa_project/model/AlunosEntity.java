@@ -59,7 +59,7 @@ public class AlunosEntity implements UserDetails{
     @Builder.Default
     private Set<TreinosEntity> treinos = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY) //FetchType tem que ser Eager, ERROOOR!
     @JoinTable(
         name = "alunos_roles",
         joinColumns = @JoinColumn(name = "aluno_id"),
