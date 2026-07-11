@@ -59,6 +59,29 @@ public class AuthenticationService {
           alunosRepository.save(novoAluno);
     }
 
+    public void criarAdmin(RegisterRequestDto registerRequestDto){
+        AlunosEntity aluno = alunosRepository.findByEmail(registerRequestDto.getEmail()).orElse(null);
+
+        if(aluno != null){
+            throw new BadRequestException("Aluno já cadastrado com esse email!");
+        }
+
+        RolesEntity role = rolesRepository.findByNome(RoleTypeEnum.ROLE_ADMIN.name())
+                .orElseGet(() -> rolesRepository.save(RolesEntity.builder()
+                                                                  .nome(RoleTypeEnum.ROLE_ADMIN.name())
+                                                                  .build()
+                                                    ));
+
+        AlunosEntity novoAluno = AlunosEntity.builder()
+                .nome(registerRequestDto.getNome())
+                .email(registerRequestDto.getEmail())
+                .roles(Set.of(role))
+                .senha(passwordEncoder.encode(registerRequestDto.getSenha()))
+                .build();
+
+        alunosRepository.save(novoAluno);
+    }
+
     public TokenResponseDto login(LoginRequestDto loginRequestDto){
         try{
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.getEmail(), loginRequestDto.getSenha()));

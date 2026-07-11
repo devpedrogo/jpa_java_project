@@ -39,6 +39,12 @@ public class AlunoController {
         return alunoService.listarAlunos();
     }
 
+    @GetMapping("/{alunoId}")
+    @ResponseStatus(HttpStatus.OK)
+    public AlunosEntity buscarAlunoPorId(@Valid @PathVariable Integer alunoId) throws NotFoundException {
+        return alunoService.buscarAlunoPorId(alunoId);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void criarAluno(@Valid @RequestBody AlunoDto alunoDto) throws BadRequestException{

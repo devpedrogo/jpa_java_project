@@ -41,6 +41,11 @@ public class AlunoService {
         return alunosRepository.findAll();
     }
 
+    public AlunosEntity buscarAlunoPorId(Integer alunoId) throws NotFoundException {
+        return alunosRepository.findById(alunoId)
+                .orElseThrow(() -> new NotFoundException("Aluno com id [" + alunoId + "] não encontrado!"));
+    }
+
     //Rollback com a anotação @Transactional para manter a integridade dos dados
     @Transactional(rollbackFor = Exception.class)
     public void deletarAluno(Integer alunoId) throws NotFoundException{
