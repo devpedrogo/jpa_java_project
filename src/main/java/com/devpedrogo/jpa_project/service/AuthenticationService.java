@@ -21,10 +21,10 @@ import com.devpedrogo.jpa_project.model.RolesEntity;
 import com.devpedrogo.jpa_project.repository.IAlunosRepository;
 import com.devpedrogo.jpa_project.repository.IRolesRepository;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AuthenticationService {
 
     private final IAlunosRepository alunosRepository;
@@ -36,7 +36,7 @@ public class AuthenticationService {
     private long expirationTime;
 
 
-    public void criarAluno(RegisterRequestDto registerRequestDto) throws BadRequestException{
+    public void criarAluno(RegisterRequestDto registerRequestDto){
           AlunosEntity aluno = alunosRepository.findByEmail(registerRequestDto.getEmail()).orElse(null);
 
           if(aluno != null){
@@ -59,7 +59,7 @@ public class AuthenticationService {
           alunosRepository.save(novoAluno);
     }
 
-    public TokenResponseDto login(LoginRequestDto loginRequestDto) throws Exception{
+    public TokenResponseDto login(LoginRequestDto loginRequestDto){
         try{
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.getEmail(), loginRequestDto.getSenha()));
 
