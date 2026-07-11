@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devpedrogo.jpa_project.dto.LoginRequestDto;
 import com.devpedrogo.jpa_project.dto.RegisterRequestDto;
 import com.devpedrogo.jpa_project.dto.TokenResponseDto;
-import com.devpedrogo.jpa_project.exception.BadRequestException;
 import com.devpedrogo.jpa_project.service.AuthenticationService;
 
 import jakarta.validation.Valid;
