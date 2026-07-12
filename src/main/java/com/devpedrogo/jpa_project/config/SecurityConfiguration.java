@@ -24,6 +24,12 @@ public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    private static final String[] SWAGGER_WHITELIST = {
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            "/swagger-ui.html"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
         return http
@@ -36,7 +42,10 @@ public class SecurityConfiguration {
                     })
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/v1/auth/**").permitAll()
+                        .requestMatchers(SWAGGER_WHITELIST).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v1/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/v1/auth/register/admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/v1/avaliacoes").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

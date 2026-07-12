@@ -13,6 +13,7 @@ import com.devpedrogo.jpa_project.dto.RegisterRequestDto;
 import com.devpedrogo.jpa_project.dto.TokenResponseDto;
 import com.devpedrogo.jpa_project.service.AuthenticationService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,7 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
+    @SecurityRequirements // Remove qualquer exigência de segurança global para este endpoint
     public void register(@Valid @RequestBody RegisterRequestDto registerRequestDto){
         authenticationService.criarAluno(registerRequestDto);
     }
@@ -36,6 +38,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    @SecurityRequirements // Remove qualquer exigência de segurança global para este endpoint
     public TokenResponseDto login(@Valid @RequestBody LoginRequestDto loginRequestDto) throws Exception{
         return authenticationService.login(loginRequestDto);
     }
